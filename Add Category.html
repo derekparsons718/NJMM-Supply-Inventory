@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+  
+    <script>
+      function respond() {
+        var formData = document.getElementById("addCategoryForm");
+        google.script.run.addCategory(formData);
+        google.script.host.close();
+      }
+      
+    </script>
+    
+    <? var numberOfLanguages = getNumberOfLanguages();
+    var Languages = getLanguages(); 
+    var Categories = getCategories();?>
+    
+    <!-- This form does not submit like a normal html form. The submit button is manually coded
+    so that the form data can be handled within the apps script. -->
+    <form id='addCategoryForm'>
+    
+      <center><font color="grey"><i>You must include at least one item in your new category.</i></font></center><br><br>
+      
+      Name of Category to be added:<br>
+      <input type='text' name='nameOfCategory'><br><br>
+      
+      Name of new item in new category:<br>
+      <input type='text' name='nameOfItem'><br><br>
+      
+      In what languages is this item available?<br>
+      <? for (i=0; i<numberOfLanguages; i++) {?>
+        <input type='checkbox' name='language' value='<?=i?>'> <?=Languages[0][i]?> <br>
+      <?}?> <br>
+      
+      How many items come in a set?<br>
+      <input type='text' name='set'><br><br><br>
+      
+      <center><input type='button' onclick='respond()' value='Add Category'></center>
+      
+      </form>
+   
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+  
+    <script>
+      function respond() {
+        var formData = document.getElementById("editCategoryForm");
+        google.script.run.editCategory(formData);
+        google.script.host.close();
+      }
+    </script>
+    
+    <?var Categories = getCategories();?>
+    
+    <!-- This form does not submit like a normal html form. The submit button is manually coded
+    so that the form data can be handled within the apps script. -->
+    <form id="editCategoryForm">
+      
+      Which category would you like to edit? <br>
+      <? for (i=0; i<Categories.length; i++) { ?>
+        <input type='radio' name='category' value='<?=Categories[i]?>'> <?=Categories[i]?> <br>
+      <?}?> <br><br>
+      
+      What do you want the new name to be for this category?<br>
+      <input type='text' name='newCategoryName'><br><br>
+      
+      <center><input type="button" onclick="respond()" value="edit Category"></center>
+      
+    </form>
+    
+  </body>
+</html>

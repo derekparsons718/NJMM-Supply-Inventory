@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+  
+    <script>
+      function respond() {
+        var formData = document.getElementById("removeLanguageForm");
+        google.script.run.removeLanguage(formData);
+        google.script.host.close();
+      }
+      
+    </script>
+    
+    <? var numberOfLanguages = getNumberOfLanguages();
+    var Languages = getLanguages();?>
+    
+    <!-- This form does not submit like a normal html form. The submit button is manually coded
+    so that the form data can be handled within the apps script. -->
+    <form id='removeLanguageForm'>
+      
+      What language would you like to remove?<br><br>
+      <? for (i=0; i<numberOfLanguages; i++) {?>
+        <input type='checkbox' name='language' value='<?=i?>'> <?=Languages[0][i]?> <br>
+      <?}?> <br>
+      
+      <center><input type='button' onclick='respond()' value='remove Language'></center>
+      
+      </form>
+   
+  </body>
+</html>
